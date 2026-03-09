@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Séparateur de Texte - Présentation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-light: #a78bfa;
+            --accent: #06b6d4;
+            --bg: #0f0f1a;
+            --bg2: #1a1a2e;
+            --bg3: #16213e;
+            --card: #1e1e3a;
+            --border: #2e2e5a;
+            --text: #e0e0e0;
+            --muted: #9090b0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(15,15,26,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--primary-light); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px 40px;
+            background: radial-gradient(ellipse at top, #1a0a3e 0%, var(--bg) 60%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(124,58,237,0.2);
+            border: 1px solid rgba(124,58,237,0.4);
+            color: var(--primary-light);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, var(--primary-light) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 36px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #5b21b6);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(124,58,237,0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-light);
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid var(--primary);
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover { background: rgba(124,58,237,0.1); }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-light);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 20px;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(6,182,212,0.15);
+            border: 1px solid rgba(6,182,212,0.3);
+            color: var(--accent);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 60px;
+        }
+
+        /* FEATURES */
+        #features { background: var(--bg2); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* HOW IT WORKS */
+        #how {
+            background: var(--bg);
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+
+        .step {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            padding: 32px 0;
+        }
+
+        .step-num {
+            width: 58px;
+            height: 58px;
+            min-width: 58px;
+            background: linear-gradient(135deg, var(--primary), #5b21b6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(124,58,237,0.4);
+        }
+
+        .step-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: var(--muted);
+            font-size: 15px;
+            max-width: 700px;
+        }
+
+        .step-content .tip {
+            display: inline-block;
+            background: rgba(6,182,212,0.1);
+            border: 1px solid rgba(6,182,212,0.3);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        /* MODES */
+        #modes { background: var(--bg2); }
+
+        .modes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 700px) {
+            .modes-grid { grid-template-columns: 1fr; }
+            nav .nav-links { display: none; }
+        }
+
+        .mode-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px;
+        }
+
+        .mode-card.smart { border-top: 3px solid var(--primary); }
+        .mode-card.hard { border-top: 3px solid var(--accent); }
+
+        .mode-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .mode-card .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .smart .badge { background: rgba(124,58,237,0.2); color: var(--primary-light); }
+        .hard .badge { background: rgba(6,182,212,0.2); color: var(--accent); }
+
+        .mode-card p { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+
+        .mode-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mode-card ul li {
+            font-size: 14px;
+            color: var(--text);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .mode-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+
+        .hard ul li::before { color: var(--accent); }
+
+        /* FORMATS */
+        #formats { background: var(--bg); }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .format-cat {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .format-cat h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 12px;
+        }
+
+        .format-cat .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+
+        /* OPTIONS TABLE */
+        #options { background: var(--bg2); }
+
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card);
+        }
+
+        thead tr {
+            background: rgba(124,58,237,0.2);
+        }
+
+        th {
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-light);
+        }
+
+        td {
+            padding: 14px 20px;
+            font-size: 14px;
+            color: var(--text);
+            border-top: 1px solid var(--border);
+        }
+
+        tr:hover td { background: rgba(255,255,255,0.02); }
+
+        /* INSTALL */
+        #install { background: var(--bg); }
+
+        .code-block {
+            background: #0d0d1a;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #a0f0a0;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .code-block .comment { color: #6a6a8a; }
+        .code-block .cmd { color: #a0f0a0; }
+
+        .install-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 700px;
+        }
+
+        .install-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .install-step-num {
+            width: 32px; height: 32px;
+            min-width: 32px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .install-step-text h4 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .install-step-text p { font-size: 14px; color: var(--muted); }
+
+        /* FOOTER */
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        footer strong { color: var(--primary-light); }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">✂️ Séparateur de Texte</div>
+    <ul class="nav-links">
+        <li><a href="#features">Fonctionnalités</a></li>
+        <li><a href="#how">Fonctionnement</a></li>
+        <li><a href="#modes">Modes</a></li>
+        <li><a href="#formats">Formats</a></li>
+        <li><a href="#options">Options</a></li>
+        <li><a href="#install">Installation</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">🚀 Outil 100% gratuit & open source</div>
+        <h1>Découpez vos textes en toute simplicité</h1>
+        <p>Un outil web puissant pour fractionner vos longs textes et fichiers en parties gérables, directement dans votre navigateur. Aucune donnée ne quitte votre appareil.</p>
+        <div class="hero-btns">
+            <a href="#how" class="btn-primary">▶ Voir le fonctionnement</a>
+            <a href="#install" class="btn-secondary">⚡ Utiliser l'outil</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Côté client</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Installation requise</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">2</div>
+                <div class="stat-label">Modes de découpe</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">∞</div>
+                <div class="stat-label">Fichiers simultanés</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+    <div class="section-inner">
+        <div class="reveal">
+            <span class="section-tag">Fonctionnalités</span>
+            <h2 class="section-title">Tout ce dont vous avez besoin</h2>
+            <p class="section-subtitle">Un outil complet, simple à utiliser, sans aucune configuration requise.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon">📝</div>
+                <h3>Mode Texte</h3>
+                <p>Collez directement votre texte dans la zone de saisie. Un compteur en temps réel vous indique le nombre de caractères saisis.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">📁</div>
+                <h3>Mode Fichiers</h3>
+                <p>Glissez-déposez un ou plusieurs fichiers texte simultanément. Les doublons sont automatiquement détectés et ignorés.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">✂️</div>
+                <h3>Découpe Intelligente</h3>
+                <p>L'algorithme respecte les mots et les phrases lors de la découpe. Aucun mot n'est coupé en plein milieu.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">⚡</div>
+                <h3>Découpe Brute</h3>
+                <p>Coupe exactement à la limite définie, sans compromis. Idéal pour les cas où le respect strict de la limite est prioritaire.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">📋</div>
+                <h3>Copie en un clic</h3>
+                <p>Copiez n'importe quelle partie dans le presse-papiers instantanément. Compatible avec tous les navigateurs modernes.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">💾</div>
+                <h3>Téléchargement .txt</h3>
+                <p>Téléchargez chaque partie individuellement en fichier .txt, nommé automatiquement avec le nom de la source d'origine.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">🔒</div>
+                <h3>100% Privé</h3>
+                <p>Tout le traitement se fait dans votre navigateur. Aucune donnée n'est envoyée sur un serveur. Votre contenu reste confidentiel.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">📊</div>
+                <h3>Résumé détaillé</h3>
+                <p>Après traitement, un résumé complet indique le nombre de sources traitées, le total de caractères et le nombre de parties générées.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">⚠️</div>
+                <h3>Gestion des erreurs</h3>
+                <p>Les fichiers vides ou illisibles sont signalés clairement sans interrompre le traitement des autres fichiers valides.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+    <div class="section-inner">
+        <div class="reveal">
+            <span class="section-tag">Fonctionnement</span>
+            <h2 class="section-title">Comment ça marche ?</h2>
+            <p class="section-subtitle">En quelques étapes simples, découpez n'importe quel texte ou fichier.</p>
+        </div>
+        <div class="steps">
+            <div class="step reveal">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h3>Choisissez votre source</h3>
+                    <p>Sélectionnez l'onglet <strong>📝 Texte</strong> pour coller votre texte directement, ou l'onglet <strong>📁 Fichiers</strong> pour importer un ou plusieurs fichiers. Vous pouvez combiner les deux : le texte collé et les fichiers seront tous traités ensemble.</p>
+                    <span class="tip">💡 Astuce : vous pouvez glisser-déposer vos fichiers directement sur la zone de dépôt</span>
+                </div>
+            </div>
+            <div class="step reveal">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h3>Définissez la limite de caractères</h3>
+                    <p>Entrez le nombre maximum de caractères que doit contenir chaque partie. Par défaut, la limite est fixée à <strong>4 000 caractères</strong>, idéale pour des outils comme ChatGPT. Adaptez cette valeur selon votre usage.</p>
+                    <span class="tip">💡 Exemples : 1 600 pour les SMS, 4 000 pour les LLMs, 10 000 pour les emails</span>
+                </div>
+            </div>
+            <div class="step reveal">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h3>Choisissez le mode de découpe</h3>
+                    <p>Sélectionnez <strong>Intelligente</strong> pour une découpe respectant les mots et les phrases, ou <strong>Brute</strong> pour une coupure exacte à la limite définie. Le mode Intelligent est recommandé dans la grande majorité des cas.</p>
+                </div>
+            </div>
+            <div class="step reveal">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h3>Lancez la découpe</h3>
+                    <p>Cliquez sur <strong>✂️ Découper le texte</strong>. L'outil traite immédiatement toutes les sources (texte + fichiers) et affiche les résultats organisés par source, avec le nombre de caractères et de parties générées.</p>
+                </div>
+            </div>
+            <div class="step reveal">
+                <div class="step-num">5</div>
+                <div class="step-content">
+                    <h3>Récupérez vos parties</h3>
+                    <p>Pour chaque partie générée, vous pouvez <strong>📋 Copier</strong> son contenu dans le presse-papiers ou <strong>💾 Télécharger</strong> le fichier .txt correspondant. Les fichiers sont nommés automatiquement (ex: <code>mondocument_part1.txt</code>).</p>
+                    <span class="tip">💡 Une notification s'affiche brièvement pour confirmer la copie ou le téléchargement</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODES -->
+<section id="modes">
+    <div class="section-inner">
+        <div class="reveal">
+            <span class="section-tag">Modes de découpe</span>
+            <h2 class="section-title">Intelligent vs Brut</h2>
+            <p class="section-subtitle">Deux algorithmes selon vos besoins.</p>
+        </div>
+        <div class="modes-grid">
+            <div class="mode-card smart reveal">
+                <div class="badge">⭐ Recommandé</div>
+                <h3>✂️ Mode Intelligent</h3>
+                <p>L'algorithme analyse le texte et cherche le meilleur point de coupure avant la limite : saut de ligne, espace, ponctuation. Le résultat est naturel et lisible.</p>
+                <ul>
+                    <li>Aucun mot coupé en plein milieu</li>
+                    <li>Respect des paragraphes quand possible</li>
+                    <li>Résultat propre et immédiatement utilisable</li>
+                    <li>Idéal pour les textes narratifs, articles, emails</li>
+                    <li>Parfait pour les LLMs et outils de traitement NLP</li>
+                </ul>
+            </div>
+            <div class="mode-card hard reveal">
+                <div class="badge">⚡ Précis</div>
+                <h3>🔪 Mode Brut</h3>
+                <p>La coupure est effectuée exactement à la position de la limite définie, sans aucun ajustement. Garantit que chaque partie ne dépasse jamais la limite.</p>
+                <ul>
+                    <li>Limite strictement respectée</li>
+                    <li>Toutes les parties ont exactement la même taille</li>
+                    <li>Traitement plus rapide sur très grands textes</li>
+                    <li>Idéal pour les données structurées ou le code</li>
+                    <li>Utile pour les systèmes avec limite absolue de bytes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FORMATS -->
+<section id="formats">
+    <div class="section-inner">
+        <div class="reveal">
+            <span class="section-tag">Compatibilité</span>
+            <h2 class="section-title">Formats de fichiers supportés</h2>
+            <p class="section-subtitle">Tous les fichiers lisibles comme texte brut sont acceptés.</p>
+        </div>
+        <div class="formats-grid reveal">
+            <div class="format-cat">
+                <h4>📄 Texte brut</h4>
+                <div class="tags">
+                    <span class="tag">.txt</span>
+                    <span class="tag">.text</span>
+                    <span class="tag">.log</span>
+                </div>
+            </div>
+            <div class="format-cat">
+                <h4>💻 Code source</h4>
+                <div class="tags">
+                    <span class="tag">.py</span>
+                    <span class="tag">.js</span>
+                    <span class="tag">.ts</span>
+                    <span class="tag">.java</span>
+                    <span class="tag">.c</span>
+                    <span class="tag">.cpp</span>
+                    <span class="tag">.cs</span>
+                    <span class="tag">.go</span>
+                    <span class="tag">.rb</span>
+                    <span class="tag">.php</span>
+                </div>
+            </div>
+            <div class="format-cat">
+                <h4>🌐 Web</h4>
+                <div class="tags">
+                    <span class="tag">.html</span>
+                    <span class="tag">.css</span>
+                    <span class="tag">.xml</span>
+                    <span class="tag">.svg</span>
+                </div>
+            </div>
+            <div class="format-cat">
+                <h4>📊 Données</h4>
+                <div class="tags">
+                    <span class="tag">.json</span>
+                    <span class="tag">.csv</span>
+                    <span class="tag">.yaml</span>
+                    <span class="tag">.yml</span>
+                    <span class="tag">.toml</span>
+                </div>
+            </div>
+            <div class="format-cat">
+                <h4>📝 Documentation</h4>
+                <div class="tags">
+                    <span class="tag">.md</span>
+                    <span class="tag">.rst</span>
+                    <span class="tag">.tex</span>
+                </div>
+            </div>
+            <div class="format-cat">
+                <h4>⚙️ Config</h4>
+                <div class="tags">
+                    <span class="tag">.ini</span>
+                    <span class="tag">.env</span>
+                    <span class="tag">.cfg</span>
+                    <span class="tag">.conf</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OPTIONS -->
+<section id="options">
+    <div class="section-inner">
+        <div class="reveal">
+            <span class="section-tag">Configuration</span>
+            <h2 class="section-title">Options disponibles</h2>
+            <p class="section-subtitle">Paramétrez l'outil selon vos besoins.</p>
+        </div>
+        <div class="table-wrap reveal">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Valeur par défaut</th>
+                        <th>Valeurs possibles</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Limite de caractères</strong></td>
+                        <td>10 000</td>
+                        <td>1 — illimité</td>
+                        <td>Nombre maximum de caractères par partie générée</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mode de découpe</strong></td>
+                        <td>Intelligente</td>
+                        <td>Intelligente / Brute</td>
+                        <td>Algorithme utilisé pour déterminer le point de coupure</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Source texte</strong></td>
+                        <td>—</td>
+                        <td>Texte collé</td>
+                        <td>Zone de saisie libre avec compteur de caractères en temps réel</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Source fichiers</strong></td>
+                        <td>—</td>
+                        <td>Un ou plusieurs fichiers</td>
+                        <td>Import par sélection ou glisser-déposer, dédoublonnage automatique</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nom des fichiers générés</strong></td>
+                        <td>Auto</td>
+                        <td>—</td>
+                        <td>Format : <code>nomfichier_part1.txt</code>, <code>nomfichier_part2.txt</code>…</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- INSTALL -->
+<section id="install">
+    <div class="section-inner">
+        <div class="reveal">
+            <span class="section-tag">Démarrage rapide</span>
+            <h2 class="section-title">Comment l'utiliser</h2>
+            <p class="section-subtitle">Aucune installation, aucune dépendance. Prêt en 10 secondes.</p>
+        </div>
+        <div class="install-steps">
+            <div class="install-step reveal">
+                <div class="install-step-num">1</div>
+                <div class="install-step-text">
+                    <h4>Cloner ou télécharger le projet</h4>
+                    <p>Récupérez les fichiers depuis GitHub</p>
+                    <div class="code-block">
+                        <span class="comment"># Cloner le dépôt</span><br>
+                        <span class="cmd">git clone https://github.com/AlexandreTaboin/text-spliter.git</span><br><br>
+                        <span class="comment"># Ou téléchargez le ZIP directement depuis GitHub</span>
+                    </div>
+                </div>
+            </div>
+            <div class="install-step reveal">
+                <div class="install-step-num">2</div>
+                <div class="install-step-text">
+                    <h4>Ouvrir le fichier</h4>
+                    <p>Double-cliquez sur <strong>index.html</strong> pour l'ouvrir dans votre navigateur. C'est tout !</p>
+                    <div class="code-block">
+                        <span class="comment"># Structure du projet</span><br>
+                        <span class="cmd">separateur-texte/</span><br>
+                        <span class="cmd">├── index.html &nbsp;&nbsp;&nbsp;<span class="comment"># ← Ouvrez ce fichier</span></span><br>
+                        <span class="cmd">└── README.md</span>
+                    </div>
+                </div>
+            </div>
+            <div class="install-step reveal">
+                <div class="install-step-num">3</div>
+                <div class="install-step-text">
+                    <h4>Commencer à l'utiliser</h4>
+                    <p>Collez votre texte ou importez vos fichiers, définissez votre limite, cliquez sur <strong>✂️ Découper</strong> et récupérez vos parties !</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>✂️ <strong>Séparateur de Texte</strong> — Outil open source, 100% gratuit, 100% privé.</p>
+    <p style="margin-top: 8px;">Aucune donnée n'est collectée • Aucun serveur requis • Fonctionne hors ligne</p>
+</footer>
+
+<script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
