@@ -48,7 +48,7 @@ Aucune installation requise. C'est un fichier HTML unique, autonome.
 
 1. Téléchargez ou clonez ce dépôt :
    ```bash
-   git clone https://github.com/votre-utilisateur/separateur-texte.git
+   git clone https://github.com/AlexandreTaboin/text-spliter.git
    ```
 2. Ouvrez le fichier `index.html` dans votre navigateur :
    ```bash
